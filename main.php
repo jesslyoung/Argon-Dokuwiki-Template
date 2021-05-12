@@ -190,8 +190,9 @@ $showSidebar = page_findnearest($conf['sidebar']) && ($ACT == 'show');
                             <?php
                             $menu_items = (new \dokuwiki\Menu\PageMenu())->getItems();
                             foreach($menu_items as $item) {
+                                $attr = buildAttributes($item->getLinkAttributes('page-menu__link '));
                                 echo '<li>'
-                                    .'<a class="page-menu__link" href="'.$item->getLink().'" title="'.$item->getTitle().'">'
+                                    .'<a '.$attr.'>'
                                     .'<i class="">'.inlineSVG($item->getSvg()).'</i>'
                                     . '<span class="a11y">'.$item->getLabel().'</span>'
                                     . '</a></li>';
