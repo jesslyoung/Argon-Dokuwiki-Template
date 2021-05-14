@@ -186,17 +186,21 @@ $showSidebar = page_findnearest($conf['sidebar']) && ($ACT == 'show');
 						</nav>
 
                         <!-- Page Menu -->
-                        <div class="argon-doku-page-menu">
-                            <?php
-                            $menu_items = (new \dokuwiki\Menu\PageMenu())->getItems();
-                            foreach($menu_items as $item) {
-                                echo '<li>'
-                                    .'<a class="page-menu__link" href="'.$item->getLink().'" title="'.$item->getTitle().'">'
-                                    .'<i class="">'.inlineSVG($item->getSvg()).'</i>'
-                                    . '<span class="a11y">'.$item->getLabel().'</span>'
-                                    . '</a></li>';
-                            }
-                            ?>
+                        <div id="dokuwiki__pagetools">
+                            <div class="argon-doku-page-menu tools">
+                                <?php
+                                    $menu_items = (new \dokuwiki\Menu\PageMenu())->getItems();
+                                    foreach($menu_items as $item) {
+                                        $attr = buildAttributes($item->getLinkAttributes('page-menu__link '));
+                                        echo '<li class="action">'
+                                        .'<a '.$attr.'>'
+                                        .'<i class="">'.inlineSVG($item->getSvg()).'</i>'
+                                        . '<span class="a11y">'.$item->getLabel().'</span>'
+                                        . '</a></li>';
+                                    }
+                                ?>
+                                <?php /* echo (new \dokuwiki\Menu\PageMenu())->getListItems(); */ ?>
+                            </div>
                         </div>
 
                         <!-- Floating Top Button -->
